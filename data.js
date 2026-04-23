@@ -137,13 +137,13 @@ window.SITE = {
       links: [],
     },
     {
-      key: "W1", year: 2023, venue: "AAAI 2023", venueClass: "wshop", kind: "workshop", tag: "oral",
+      key: "W1", year: 2023, venue: "AAAI-23 Bridge", venueClass: "wshop", kind: "workshop", tag: "oral",
       title: "Modeling uplift from observational time-series in continual scenarios",
       authors: [["Sanghyun Kim", true], ["Jungwon Choi"], ["Namhee Kim"], ["Jaesung Ryu"], ["Juho Lee"]],
       topics: ["causal", "time-series"],
       tldr: "An uplift model for observational time-series that continues to adapt as distribution drifts — evaluated on marketing and healthcare-style data.",
-      bibtex: "@inproceedings{kim2023uplift,\n  title={Modeling uplift from observational time-series},\n  author={Kim, Sanghyun and others},\n  booktitle={AAAI Workshop},\n  year={2023}\n}",
-      links: [],
+      bibtex: "@inproceedings{kim2023uplift,\n  title={Modeling uplift from observational time-series in continual scenarios},\n  author={Kim, Sanghyun and Choi, Jungwon and Kim, Namhee and Ryu, Jaesung and Lee, Juho},\n  booktitle={The First AAAI Bridge Program on Continual Causality},\n  series={Proceedings of Machine Learning Research},\n  volume={208},\n  publisher={PMLR},\n  year={2023}\n}",
+      links: [ {label:"PMLR", href:"https://proceedings.mlr.press/v208/kim23a.html"} ],
     },
   ],
 
