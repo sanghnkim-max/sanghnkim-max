@@ -13,14 +13,10 @@ function Hero() {
       </div>
 
       <div className="hero__grid">
-        <div className="hero__portrait" aria-hidden="true">
+        <div className="hero__portrait">
           <div className="hero__portrait-frame">
             <div className="hero__portrait-inner">
-              <div className="hero__portrait-placeholder">
-                <span className="t-mono-xs faint">portrait</span>
-                <span className="hero__portrait-initials">SK</span>
-                <span className="t-mono-xs faint">drop a 1:1 image here</span>
-              </div>
+              <img src="assets/profile.jpg" alt="Sanghyun Kim" className="hero__portrait-img"/>
             </div>
           </div>
         </div>

@@ -42,7 +42,7 @@ function News() {
   const items = s.news.slice(0, limit);
   return (
     <section className="block" id="news" data-screen-label="02 news">
-      <SecHead num="01" title="Recent" aside="last update · apr 2026"/>
+      <SecHead num="Ⅴ" title="Recent" aside="last update · apr 2026"/>
       {items.map((n, i) => (
         <div className="news-ticker" key={i}>
           <div className="news-ticker__date">{n.date}</div>
@@ -163,7 +163,7 @@ function Experience() {
   const s = window.SITE;
   return (
     <section className="block" id="experience" data-screen-label="05 experience">
-      <SecHead num="04" title="Experience"/>
+      <SecHead num="Ⅵ" title="Experience"/>
       <ul className="tl-list">
         {s.experience.map((e, i) => <TlEntry key={i} {...e}/>)}
       </ul>
@@ -175,7 +175,7 @@ function EducationAwards() {
   const s = window.SITE;
   return (
     <section className="block" id="education" data-screen-label="06 education">
-      <SecHead num="05" title="Education & honors"/>
+      <SecHead num="Ⅶ" title="Education & honors"/>
       <ul className="tl-list">
         {s.education.map((e, i) => (
           <TlEntry key={i} when={e.when} role={e.degree} org={e.school} place={e.place} notes={e.notes}/>
@@ -197,7 +197,7 @@ function Skills() {
   const s = window.SITE;
   return (
     <section className="block" id="skills" data-screen-label="07 toolkit">
-      <SecHead num="06" title="Toolkit"/>
+      <SecHead num="Ⅷ" title="Toolkit"/>
       <div className="skills-grid">
         <div>
           <div className="t-caps" style={{marginBottom:'var(--s-3)'}}>Languages</div>

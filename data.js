@@ -154,7 +154,7 @@ window.SITE = {
       place: "Seoul",
       notes: [
         "Leading an on-device agentic framework for proactive device-use assistance.",
-        "Leading multimodal context generator & orchestrator models for a perception-triggered agentic framework.",
+        "Developing multimodal context generator & orchestrator models for a perception-triggered agentic framework.",
         "Developed a platform-agnostic generative-UI framework/renderer for Samsung One UI.",
       ]
     },
