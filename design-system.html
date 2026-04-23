@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Design System — Sanghyun Kim</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="design-system.css?v=2">
+  <style>
+    .page { max-width: 1200px; margin: 0 auto; padding: var(--s-8) var(--gutter) var(--s-10); }
+    .hero { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: var(--s-5); padding-bottom: var(--s-6); border-bottom: 1px solid var(--border); margin-bottom: var(--s-8);}
+    .hero h1 { margin: 0; font-family: var(--font-display); font-size: var(--fs-4xl); letter-spacing: var(--tr-tight); font-weight: 600; line-height: 1; }
+    .hero p { margin: var(--s-3) 0 0; font-size: var(--fs-md); color: var(--fg-mute); max-width: 48ch; }
+    .hero .actions { display: flex; gap: var(--s-2); align-items: center; }
+
+    .layout { display: grid; grid-template-columns: 12rem 1fr; gap: var(--s-8); align-items: start; }
+    @media (max-width: 900px) { .layout { grid-template-columns: 1fr; } .toc { position: static !important; } }
+
+    .toc { position: sticky; top: var(--s-5); font-family: var(--font-sans); font-size: var(--fs-sm); }
+    .toc ol { margin: 0; padding: 0; list-style: none; counter-reset: toc; }
+    .toc li { counter-increment: toc; padding: 6px 0; color: var(--fg-mute); display: flex; gap: var(--s-3); align-items: baseline; }
+    .toc li::before { content: counter(toc, decimal-leading-zero); color: var(--fg-faint); font-family: var(--font-mono); font-size: var(--fs-xs); }
+    .toc a { border: 0; color: inherit; }
+    .toc a:hover { color: var(--accent); background: transparent; }
+
+    section.block { margin-bottom: var(--s-9); scroll-margin-top: var(--s-6); }
+    .cols-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-5); }
+    .cols-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-4); }
+    .cols-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s-3); }
+    .cols-6 { display: grid; grid-template-columns: repeat(6, 1fr); gap: var(--s-3); }
+    @media (max-width: 780px) { .cols-2, .cols-3, .cols-4, .cols-6 { grid-template-columns: 1fr 1fr; } }
+
+    .legend { font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--fg-faint); text-transform: uppercase; letter-spacing: var(--tr-caps); margin-bottom: var(--s-3); }
+
+    .preview-box { border: 1px solid var(--border); border-radius: var(--r-3); padding: var(--s-5); background: var(--bg); }
+    .preview-box + .preview-box { margin-top: var(--s-3); }
+    .preview-sunk { background: var(--bg-sunk); border-color: var(--border-2); }
+
+    /* Spec rows */
+    .spec-row {
+      display: grid;
+      grid-template-columns: 9rem 1fr;
+      gap: var(--s-5);
+      padding: var(--s-4) 0;
+      border-bottom: 1px solid var(--border-2);
+      align-items: baseline;
+    }
+    .spec-row:last-child { border-bottom: 0; }
+    .spec-label { font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--fg-faint); }
+    .spec-label b { display: block; color: var(--fg); font-weight: 500; font-size: var(--fs-sm); margin-bottom: 2px; font-family: var(--font-sans); letter-spacing: -0.01em; }
+
+    /* Swatches */
+    .swatch {
+      display: grid;
+      grid-template-rows: 5rem auto;
+      border: 1px solid var(--border);
+      border-radius: var(--r-3);
+      overflow: hidden;
+      background: var(--bg);
+      transition: transform var(--t-fast) var(--ease);
+    }
+    .swatch:hover { transform: translateY(-1px); }
+    .swatch__body { padding: 10px 12px; border-top: 1px solid var(--border); font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--fg-mute); }
+    .swatch__body b { display: block; color: var(--fg); font-size: var(--fs-sm); margin-bottom: 2px; font-weight: 500; font-family: var(--font-sans); letter-spacing: -0.01em; }
+
+    /* Scale bars */
+    .scale { display: grid; grid-template-columns: 3rem 1fr 5rem; gap: var(--s-3); align-items: center; font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--fg-mute); padding: 6px 0; border-bottom: 1px solid var(--border-2); }
+    .scale__bar { background: var(--fg); height: 8px; border-radius: var(--r-1); }
+
+    .theme-toggle { display: inline-flex; align-items: center; gap: var(--s-2); }
+
+    mark.hl { background: var(--accent-soft); color: var(--accent-ink); padding: 0 3px; border-radius: var(--r-1); }
+
+    /* Radii samples */
+    .radius-swatch { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
+    .radius-swatch .box { width: 64px; height: 64px; background: var(--fg); }
+
+    /* motion preview */
+    .motion-demo { width: 40px; height: 40px; background: var(--accent); border-radius: var(--r-2); animation: slide 2.2s var(--ease) infinite alternate; }
+    @keyframes slide { from { transform: translateX(0); } to { transform: translateX(140px); } }
+  </style>
+</head>
+<body>
+
+<div class="page">
+
+  <header class="hero">
+    <div>
+      <div class="t-caps" style="margin-bottom: 8px;">Design System · v1.0</div>
+      <h1>Foundations<br>for a modern research page.</h1>
+      <p>Tokens, type, color, and components for <b style="color:var(--fg)">sanghyun.kim</b> — a clean, quietly confident system built for content density without clutter.</p>
+    </div>
+    <div class="actions">
+      <button class="btn" id="themeToggle"><span id="themeLabel">◐ Dark</span></button>
+      <a class="btn btn-primary" href="index.html">See the page →</a>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav class="toc" aria-label="Sections">
+      <ol>
+        <li><a href="#principles">Principles</a></li>
+        <li><a href="#type">Typography</a></li>
+        <li><a href="#color">Color</a></li>
+        <li><a href="#space">Space & radii</a></li>
+        <li><a href="#components">Components</a></li>
+        <li><a href="#patterns">Patterns</a></li>
+        <li><a href="#motion">Motion</a></li>
+      </ol>
+    </nav>
+
+    <main>
+
+      <!-- Principles -->
+      <section class="block" id="principles">
+        <div class="sec-head">
+          <span class="num">01</span>
+          <h2>Principles</h2>
+          <span class="aside">the voice of the system</span>
+        </div>
+        <div class="cols-3">
+          <div class="preview-box">
+            <div class="t-caps">i · clarity first</div>
+            <h3 class="t-h4" style="margin: 8px 0 6px;">Content is the UI</h3>
+            <p class="muted" style="margin:0; font-size: var(--fs-sm);">No ornament. Hierarchy lives in weight, size, and space — not chrome, boxes, or colored fills.</p>
+          </div>
+          <div class="preview-box">
+            <div class="t-caps">ii · density with air</div>
+            <h3 class="t-h4" style="margin: 8px 0 6px;">Scannable, readable</h3>
+            <p class="muted" style="margin:0; font-size: var(--fs-sm);">A researcher's page. Lots of information, each line earning its place; whitespace doing real work.</p>
+          </div>
+          <div class="preview-box">
+            <div class="t-caps">iii · restraint</div>
+            <h3 class="t-h4" style="margin: 8px 0 6px;">One accent only</h3>
+            <p class="muted" style="margin:0; font-size: var(--fs-sm);">Neutrals carry 95% of the surface. A single cobalt does links, focus, and the rare highlight.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Typography -->
+      <section class="block" id="type">
+        <div class="sec-head">
+          <span class="num">02</span>
+          <h2>Typography</h2>
+          <span class="aside">Geist · Geist Mono</span>
+        </div>
+
+        <div class="cols-2" style="margin-bottom: var(--s-6);">
+          <div class="preview-box">
+            <div class="legend">Sans — interface & display</div>
+            <div style="font-family: var(--font-sans); font-size: 6rem; line-height: 1; letter-spacing: -0.03em; font-weight: 600;">Aa</div>
+            <p class="muted" style="margin-top: var(--s-3); font-size: var(--fs-sm); max-width: 34ch;">Geist — geometric, neutral, excellent at both small UI sizes and display.</p>
+            <div class="t-mono-xs muted" style="margin-top: var(--s-2);">weights 300 · 400 · 500 · 600 · 700</div>
+          </div>
+          <div class="preview-box preview-sunk">
+            <div class="legend">Mono — metadata, code, keys</div>
+            <div style="font-family: var(--font-mono); font-size: 6rem; line-height: 1; font-weight: 500;">Aa</div>
+            <p class="muted" style="margin-top: var(--s-3); font-size: var(--fs-sm); max-width: 34ch;">Geist Mono — dates, venues, kbd hints, bibtex, numeric detail.</p>
+            <div class="t-mono-xs muted" style="margin-top: var(--s-2);">weights 400 · 500</div>
+          </div>
+        </div>
+
+        <div class="legend">Scale</div>
+        <div class="spec-row">
+          <div class="spec-label"><b>Display</b>80 / 600 / -2.5%</div>
+          <div class="t-display">Clean modern type.</div>
+        </div>
+        <div class="spec-row">
+          <div class="spec-label"><b>H1</b>40 / 600</div>
+          <div class="t-h1">A simple, powerful page.</div>
+        </div>
+        <div class="spec-row">
+          <div class="spec-label"><b>H2</b>30 / 600</div>
+          <div class="t-h2">Safety alignment, revisited.</div>
+        </div>
+        <div class="spec-row">
+          <div class="spec-label"><b>H3</b>24 / 600</div>
+          <div class="t-h3">Bayesian noise selection</div>
+        </div>
+        <div class="spec-row">
+          <div class="spec-label"><b>H4</b>20 / 500</div>
+          <div class="t-h4">Section heading</div>
+        </div>
+        <div class="spec-row">
+          <div class="spec-label"><b>Lead</b>17 / 400 muted</div>
+          <div class="t-lead">The lead paragraph — one step up from body, tuned to a quieter color.</div>
+        </div>
+        <div class="spec-row">
+          <div class="spec-label"><b>Body</b>15 / 1.55</div>
+          <div class="t-body" style="max-width: var(--measure);">Body voice. Precise, a bit discursive, never breathless. Ligatures on, ideal at around 68 characters per line.</div>
+        </div>
+        <div class="spec-row">
+          <div class="spec-label"><b>Caps</b>12 mono</div>
+          <div class="t-caps">iclr 2026 · seoul · poster</div>
+        </div>
+        <div class="spec-row">
+          <div class="spec-label"><b>Mono sm</b>13</div>
+          <div class="t-mono-sm">const ε = attention_score(x);</div>
+        </div>
+      </section>
+
+      <!-- Color -->
+      <section class="block" id="color">
+        <div class="sec-head">
+          <span class="num">03</span>
+          <h2>Color</h2>
+          <span class="aside">neutrals + one cobalt</span>
+        </div>
+
+        <div class="legend">Surfaces & foregrounds</div>
+        <div class="cols-4" style="margin-bottom: var(--s-5);">
+          <div class="swatch"><div style="background: var(--bg); height: 100%; border-bottom: 1px solid var(--border);"></div><div class="swatch__body"><b>bg</b>#FFFFFF</div></div>
+          <div class="swatch"><div style="background: var(--bg-2); height: 100%;"></div><div class="swatch__body"><b>bg-2</b>#FAFAFA</div></div>
+          <div class="swatch"><div style="background: var(--bg-sunk); height: 100%;"></div><div class="swatch__body"><b>bg-sunk</b>#F4F4F5</div></div>
+          <div class="swatch"><div style="background: var(--border); height: 100%;"></div><div class="swatch__body"><b>border</b>#E5E5E5</div></div>
+          <div class="swatch"><div style="background: var(--fg-faint); height: 100%;"></div><div class="swatch__body"><b>fg-faint</b>#A3A3A3</div></div>
+          <div class="swatch"><div style="background: var(--fg-mute); height: 100%;"></div><div class="swatch__body"><b>fg-mute</b>#525252</div></div>
+          <div class="swatch"><div style="background: var(--fg-2); height: 100%;"></div><div class="swatch__body" style="background: var(--fg-2); color: var(--bg); border-color: var(--fg-2);"><b style="color: var(--bg);">fg-2</b>#262626</div></div>
+          <div class="swatch"><div style="background: var(--fg); height: 100%;"></div><div class="swatch__body" style="background: var(--fg); color: var(--bg); border-color: var(--fg);"><b style="color: var(--bg);">fg</b>#0A0A0A</div></div>
+        </div>
+
+        <div class="legend">Accent — cobalt</div>
+        <div class="cols-4">
+          <div class="swatch"><div style="background: var(--accent-soft); height: 100%;"></div><div class="swatch__body"><b>accent-soft</b>#EEF2FF</div></div>
+          <div class="swatch"><div style="background: var(--accent); height: 100%;"></div><div class="swatch__body" style="background: var(--accent); color: white; border-color: var(--accent);"><b style="color: white;">accent</b>#2E5BFF</div></div>
+          <div class="swatch"><div style="background: var(--accent-2); height: 100%;"></div><div class="swatch__body" style="background: var(--accent-2); color: white; border-color: var(--accent-2);"><b style="color: white;">accent-2</b>#1E40DF</div></div>
+          <div class="swatch"><div style="background: var(--accent-ink); height: 100%;"></div><div class="swatch__body" style="background: var(--accent-ink); color: white; border-color: var(--accent-ink);"><b style="color: white;">accent-ink</b>#1E3AC7</div></div>
+        </div>
+
+        <p class="muted" style="margin-top: var(--s-5); max-width: var(--measure); font-size: var(--fs-sm);">
+          <i>Accent appears on</i>: link hover, keyboard focus ring, a few highlighted venue pills, and the <mark class="hl">search highlight</mark>. Everything else is neutrals.
+        </p>
+      </section>
+
+      <!-- Space & radii -->
+      <section class="block" id="space">
+        <div class="sec-head">
+          <span class="num">04</span>
+          <h2>Space & radii</h2>
+          <span class="aside">8-based with 4-step</span>
+        </div>
+
+        <div class="cols-2">
+          <div>
+            <div class="legend">Spacing scale</div>
+            <div class="scale"><span>s-1</span><span class="scale__bar" style="width: 4px"></span><span>4px</span></div>
+            <div class="scale"><span>s-2</span><span class="scale__bar" style="width: 8px"></span><span>8px</span></div>
+            <div class="scale"><span>s-3</span><span class="scale__bar" style="width: 12px"></span><span>12px</span></div>
+            <div class="scale"><span>s-4</span><span class="scale__bar" style="width: 16px"></span><span>16px</span></div>
+            <div class="scale"><span>s-5</span><span class="scale__bar" style="width: 24px"></span><span>24px</span></div>
+            <div class="scale"><span>s-6</span><span class="scale__bar" style="width: 32px"></span><span>32px</span></div>
+            <div class="scale"><span>s-7</span><span class="scale__bar" style="width: 48px"></span><span>48px</span></div>
+            <div class="scale"><span>s-8</span><span class="scale__bar" style="width: 64px"></span><span>64px</span></div>
+            <div class="scale"><span>s-9</span><span class="scale__bar" style="width: 96px"></span><span>96px</span></div>
+            <div class="scale"><span>s-10</span><span class="scale__bar" style="width: 128px"></span><span>128px</span></div>
+          </div>
+          <div>
+            <div class="legend">Radii</div>
+            <div style="display: flex; gap: var(--s-5); flex-wrap: wrap;">
+              <div class="radius-swatch"><div class="box" style="border-radius: 0;"></div><span class="t-mono-xs muted">r-0 · 0</span></div>
+              <div class="radius-swatch"><div class="box" style="border-radius: var(--r-1);"></div><span class="t-mono-xs muted">r-1 · 4</span></div>
+              <div class="radius-swatch"><div class="box" style="border-radius: var(--r-2);"></div><span class="t-mono-xs muted">r-2 · 6</span></div>
+              <div class="radius-swatch"><div class="box" style="border-radius: var(--r-3);"></div><span class="t-mono-xs muted">r-3 · 10</span></div>
+              <div class="radius-swatch"><div class="box" style="border-radius: var(--r-4);"></div><span class="t-mono-xs muted">r-4 · 14</span></div>
+              <div class="radius-swatch"><div class="box" style="border-radius: var(--r-round);"></div><span class="t-mono-xs muted">round</span></div>
+            </div>
+
+            <div class="legend" style="margin-top: var(--s-6);">Shadow</div>
+            <div style="display: flex; gap: var(--s-4); flex-wrap: wrap;">
+              <div style="width:72px; height:72px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--r-3); box-shadow: var(--shadow-sm);"></div>
+              <div style="width:72px; height:72px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--r-3); box-shadow: var(--shadow-md);"></div>
+              <div style="width:72px; height:72px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--r-3); box-shadow: var(--shadow-lg);"></div>
+            </div>
+            <div class="t-mono-xs muted" style="margin-top: 6px;">sm · md · lg — subtle, never for decoration</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Components -->
+      <section class="block" id="components">
+        <div class="sec-head">
+          <span class="num">05</span>
+          <h2>Components</h2>
+          <span class="aside">functional, quiet</span>
+        </div>
+
+        <div class="legend">Buttons</div>
+        <div class="preview-box" style="display: flex; gap: var(--s-2); flex-wrap: wrap; align-items: center;">
+          <button class="btn btn-primary">Primary</button>
+          <button class="btn">Default</button>
+          <button class="btn btn-accent">Accent</button>
+          <button class="btn btn-ghost">Ghost</button>
+          <button class="btn" disabled style="opacity:.4; cursor: not-allowed;">Disabled</button>
+        </div>
+
+        <div class="legend" style="margin-top: var(--s-5);">Chips</div>
+        <div class="preview-box" style="display: flex; gap: var(--s-2); flex-wrap: wrap;">
+          <span class="chip is-active">all</span>
+          <span class="chip">conference</span>
+          <span class="chip">workshop</span>
+          <span class="chip">preprint</span>
+          <span class="chip">diffusion</span>
+          <span class="chip">safety</span>
+          <span class="chip">active learning</span>
+        </div>
+
+        <div class="legend" style="margin-top: var(--s-5);">Venue badges</div>
+        <div class="preview-box" style="display: flex; gap: var(--s-2); flex-wrap: wrap; align-items: center;">
+          <span class="venue venue--top">ICLR 2026</span>
+          <span class="venue venue--top">ECCV 2024</span>
+          <span class="venue">ICLR 2023</span>
+          <span class="venue venue--wshop">ICML 2023 ‹workshop›</span>
+          <span class="venue venue--arxiv">arXiv</span>
+          <span class="venue venue--accent">award</span>
+        </div>
+
+        <div class="legend" style="margin-top: var(--s-5);">Key–value</div>
+        <div class="preview-box">
+          <dl class="kv">
+            <dt>advisor</dt>    <dd>Juho Lee <span class="muted">(co-advisor Jinwoo Shin)</span></dd>
+            <dt>affil.</dt>     <dd>KAIST — Statistical Inference & ML Lab</dd>
+            <dt>interests</dt>  <dd>diffusion · safety alignment · Bayesian inference</dd>
+            <dt>contact</dt>    <dd><a href="#">sanghn.kim.sr@gmail.com</a></dd>
+          </dl>
+        </div>
+
+        <div class="legend" style="margin-top: var(--s-5);">Keyboard hints</div>
+        <div class="preview-box" style="font-family: var(--font-mono); font-size: var(--fs-sm); color: var(--fg-mute); display: flex; gap: var(--s-5); flex-wrap: wrap;">
+          <span><kbd>⌘</kbd><kbd>K</kbd> &nbsp;command palette</span>
+          <span><kbd>/</kbd> &nbsp;filter publications</span>
+          <span><kbd>g</kbd><kbd>p</kbd> &nbsp;go to publications</span>
+          <span><kbd>t</kbd> &nbsp;toggle theme</span>
+        </div>
+
+        <div class="legend" style="margin-top: var(--s-5);">Search field</div>
+        <div class="preview-box">
+          <div style="display: flex; align-items: center; gap: var(--s-2); background: var(--bg-sunk); border: 1px solid var(--border); border-radius: var(--r-2); padding: 8px 12px; max-width: 420px;">
+            <span class="t-mono-xs faint">/</span>
+            <input type="text" placeholder="filter by title, author, venue…" style="flex:1; border:0; background: transparent; outline: 0; font: inherit; font-size: var(--fs-sm); color: var(--fg);">
+            <span class="t-mono-xs faint"><kbd>/</kbd></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Patterns -->
+      <section class="block" id="patterns">
+        <div class="sec-head">
+          <span class="num">06</span>
+          <h2>Patterns</h2>
+          <span class="aside">the shapes you'll see most</span>
+        </div>
+
+        <div class="legend">Publication row</div>
+        <div class="preview-box" style="padding: 0;">
+          <div style="display: grid; grid-template-columns: 4rem 1fr auto; gap: var(--s-4); padding: var(--s-4) var(--s-5); border-bottom: 1px solid var(--border-2); align-items: baseline;">
+            <div class="t-mono-xs faint">2026</div>
+            <div>
+              <div style="font-weight: 500; margin-bottom: 4px;">Model already knows the best noise: Bayesian active noise selection via attention in video diffusion models</div>
+              <div class="muted" style="font-size: var(--fs-sm);">Kwanyoung Kim, <b style="color: var(--fg);">Sanghyun Kim</b></div>
+            </div>
+            <div style="display: flex; gap: 6px;"><span class="venue venue--top">ICLR 2026</span><span class="t-mono-xs muted" style="padding-top: 4px;">poster</span></div>
+          </div>
+          <div style="display: grid; grid-template-columns: 4rem 1fr auto; gap: var(--s-4); padding: var(--s-4) var(--s-5); border-bottom: 1px solid var(--border-2); align-items: baseline;">
+            <div class="t-mono-xs faint">2024</div>
+            <div>
+              <div style="font-weight: 500; margin-bottom: 4px;">Safeguard text-to-image diffusion models with human feedback inversion</div>
+              <div class="muted" style="font-size: var(--fs-sm);"><b style="color: var(--fg);">Sanghyun Kim</b>, Seohyeon Jung, Balhae Kim, Moonseok Choi, Jinwoo Shin, Juho Lee</div>
+            </div>
+            <div style="display: flex; gap: 6px;"><span class="venue venue--top">ECCV 2024</span><span class="t-mono-xs muted" style="padding-top: 4px;">poster</span></div>
+          </div>
+          <div style="display: grid; grid-template-columns: 4rem 1fr auto; gap: var(--s-4); padding: var(--s-4) var(--s-5); align-items: baseline;">
+            <div class="t-mono-xs faint">2024</div>
+            <div>
+              <div style="font-weight: 500; margin-bottom: 4px;">Safety alignment backfires: preventing the re-emergence of suppressed concepts…</div>
+              <div class="muted" style="font-size: var(--fs-sm);"><b style="color: var(--fg);">Sanghyun Kim</b>, Moonseok Choi, Jinwoo Shin, Juho Lee</div>
+            </div>
+            <div><span class="venue venue--arxiv">arXiv</span></div>
+          </div>
+        </div>
+
+        <div class="legend" style="margin-top: var(--s-5);">Timeline entry</div>
+        <div class="preview-box">
+          <div style="display: grid; grid-template-columns: 9rem 1fr; gap: var(--s-5); padding: var(--s-3) 0; border-bottom: 1px solid var(--border-2);">
+            <div class="t-mono-xs muted">Jan 2026<br><span class="faint">Present</span></div>
+            <div>
+              <div style="font-weight: 500; margin-bottom: 2px;">Project Leader · Head of Agent Model for Device Part</div>
+              <div class="muted" style="font-size: var(--fs-sm); font-style: italic;">AI Core Team · Samsung Research · Seoul</div>
+              <div style="font-size: var(--fs-sm); color: var(--fg-2); margin-top: var(--s-2);">Leading <b>Bixby Next</b> — on-device agentic framework for proactive device-use assistance.</div>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 9rem 1fr; gap: var(--s-5); padding: var(--s-3) 0;">
+            <div class="t-mono-xs muted">Sep 2024<br><span class="faint">Dec 2025</span></div>
+            <div>
+              <div style="font-weight: 500; margin-bottom: 2px;">AI Research Scientist</div>
+              <div class="muted" style="font-size: var(--fs-sm); font-style: italic;">Samsung Research · Large Vision Model Part</div>
+              <div style="font-size: var(--fs-sm); color: var(--fg-2); margin-top: var(--s-2);">Tech-led pre-training & fine-tuning of <i>Gauss-Image</i>, the on-device T2I foundation model.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Motion -->
+      <section class="block" id="motion">
+        <div class="sec-head">
+          <span class="num">07</span>
+          <h2>Motion</h2>
+          <span class="aside">restrained, always purposeful</span>
+        </div>
+        <div class="cols-3">
+          <div>
+            <div class="t-caps">Timing</div>
+            <dl class="kv" style="margin-top: var(--s-3);">
+              <dt>fast</dt>  <dd>120ms · hover, focus</dd>
+              <dt>base</dt>  <dd>220ms · state, panel</dd>
+              <dt>slow</dt>  <dd>420ms · page, theme</dd>
+            </dl>
+          </div>
+          <div>
+            <div class="t-caps">Easing</div>
+            <dl class="kv" style="margin-top: var(--s-3);">
+              <dt>default</dt>  <dd>cubic-bezier(.2,.7,.2,1)</dd>
+              <dt>ease-out</dt> <dd>cubic-bezier(.16,1,.3,1)</dd>
+            </dl>
+          </div>
+          <div>
+            <div class="t-caps">Preview</div>
+            <div style="margin-top: var(--s-3); padding: var(--s-3); background: var(--bg-sunk); border-radius: var(--r-3); overflow: hidden;">
+              <div class="motion-demo"></div>
+            </div>
+          </div>
+        </div>
+        <p class="t-mono-xs faint" style="text-align:center; margin-top: var(--s-9);">— end of vol. 01 —</p>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<script>
+  const root = document.documentElement;
+  const btn = document.getElementById('themeToggle');
+  const label = document.getElementById('themeLabel');
+  const saved = localStorage.getItem('theme');
+  if (saved === 'dark') root.setAttribute('data-theme', 'dark');
+  function sync() {
+    const dark = root.getAttribute('data-theme') === 'dark';
+    label.textContent = dark ? '◑ Light' : '◐ Dark';
+  }
+  sync();
+  btn.addEventListener('click', () => {
+    const dark = root.getAttribute('data-theme') === 'dark';
+    if (dark) { root.removeAttribute('data-theme'); localStorage.setItem('theme', 'light'); }
+    else { root.setAttribute('data-theme', 'dark'); localStorage.setItem('theme', 'dark'); }
+    sync();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 't' && !e.metaKey && !e.ctrlKey && document.activeElement === document.body) btn.click();
+  });
+</script>
+</body>
+</html>

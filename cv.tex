@@ -1,0 +1,297 @@
+%-------------------------
+% Resume in Latex
+% Author : Sidratul Muntaha Ahmed
+% License : MIT
+%------------------------
+
+\documentclass[a4,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+
+%----------FONT OPTIONS----------
+% sans-serif
+% \usepackage[sfdefault]{FiraSans}
+% \usepackage[sfdefault]{roboto}
+% \usepackage[sfdefault]{noto-sans}
+% \usepackage[default]{sourcesanspro}
+
+% serif
+% \usepackage{CormorantGaramond}
+% \usepackage{charter}
+
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[5]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{p{0.9cm}p{15cm}@{\extracolsep{\fill}}r}
+      #1 & \textbf{#2} & #3 \\
+      & \textit{\small#4} & {\small #5} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%----------HEADING----------
+
+
+\begin{center}
+    \textbf{\huge \scshape Sanghyun Kim} \\ \vspace{3pt}
+    \small 010-9785-9777 $|$ 
+    % \href{mailto:sanghn.kim@samsung.com}{\underline{sanghn.kim@samsung.com}} $|$ 
+    \href{mailto:sanghn.kim.sr@gmail.com}{\underline{sanghn.kim.sr@gmail.com}} $|$ 
+    \href{https://github.com/nannullna}{\underline{github.com/nannullna}}
+\end{center}
+
+
+%-----------EDUCATION-----------
+\section{Education}
+    \resumeSubHeadingListStart
+    \resumeSubheading
+      {KAIST}{Seoul, Republic of Korea}
+      {M.S. of Artificial Intelligence}{August 2022 - August 2024}
+          \resumeItemListStart
+            \resumeItem{Statistical Inference and Machine Learning Lab (Advisor: Juho Lee, Co-advisor: Jinwoo Shin)}
+            \resumeItem{Thesis: Safeguard Text-to-Image Diffusion Models with Human Feedback Inversion}
+            % \resumeItem{Award/Achievement/Involvement 2}
+            % \resumeItem{Award/Achievement/Involvement 3}
+        \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Yonsei University}{Seoul, Republic of Korea}
+      {Bachelor of Business Administration}{March 2015 - August 2022}
+          \resumeItemListStart
+            \resumeItem{GPA: 4.02/4.3 (97.8/100)}
+            \resumeItem{Double minors in Computer Science and Applied Statistics}
+            % \resumeItem{Award/Achievement/Involvement 2}
+            % \resumeItem{Award/Achievement/Involvement 3}
+        \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Project Leader}{January 2026 – Present}
+      {Head of Agent Model for Device Part, AI Core Team, Samsung Research}{Seoul, Republic of Korea}
+      \resumeItemListStart
+        \resumeItem{Led context generator \& orchestrator LLMs for agentic framework and project leader of Web Agent Model}
+        \resumeItem{Developed platform-agnostic generative UI framework for Samsung One UI}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {AI Research Scientist}{September 2024 – December 2025}
+      {Large Vision Model Part, AI Model Team, Samsung Research}{Seoul, Republic of Korea}
+      \resumeItemListStart
+        \resumeItem{Technically led pre-training \& fine-tuning Gauss-Image on-device foundation model for text-to-image generation}
+        \resumeItem{Launched generative wallpaper, image eraser, \& harmonization features in Galaxy S26 series}
+      \resumeItemListEnd
+      
+    \resumeSubheading
+      {AI Research Internship}{May 2024 - August 2024}
+      {Advanced ML Lab, LG AI Research}{Seoul, Republic of Korea}
+      \resumeItemListStart
+        \resumeItem{Worked on time-series diffusion models for stock and healthcare data (Advisors: Moontae Lee \& Sungwoo Park).}
+        % \resumeItem{Job description/Award/Achievement 2}
+        % \resumeItem{Job description/Award/Achievement 3}
+      \resumeItemListEnd
+    
+    \resumeSubheading
+      {Teaching Assistant}{March 2022 - December 2022}
+      {Government-funded AI Bootcamp, Likelion Inc.}{Seoul, Republic of Korea}
+      % \resumeItemListStart
+        % \resumeItem{Advisors: Moontae Lee, Sungwoo Park}
+        % \resumeItem{Job description/Award/Achievement 2}
+        % \resumeItem{Job description/Award/Achievement 3}
+      % \resumeItemListEnd
+
+    \resumeSubheading
+      {Research Internship}{January 2022 - February 2022}
+      {Statistical Inference and Machine Learning Lab, KAIST}{Daejeon, Republic of Korea}
+      \resumeItemListStart
+        \resumeItem{Worked on self-supervised learning and active learning algorithms (Advisor: Juho Lee).}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Sergeant -- Admin Specialist (KATUSA)}{May 2017 - February 2019}
+      {Multinational Logistics Division, J4, USFK HQs}{Camp Yongsan \& Humphreys}
+      \resumeItemListStart
+        \resumeItem{Streamlined Wartime Host Nation Support (WHNS) submission \& review process}
+      \resumeItemListEnd
+    
+    \resumeSubHeadingListEnd
+
+%-----------PUBLICATION-----------
+\section{Publication ($^*$: equal contributions)}
+  \resumeSubHeadingListStart
+
+    \resumeProjectHeading{[C3]}{Model already knows the best noise: Bayesian active noise selection via attention in video diffusion model}{ICLR 2026}{Kwanyoung Kim, \textbf{Sanghyun Kim}}{(poster)}
+
+    \resumeProjectHeading{[P2]}{Safety alignment backfires: preventing the re-emergence of suppressed concepts in fine-tuned text-to-image diffusion models}{arXiv 2024}{\textbf{Sanghyun Kim}, Moonseok Choi, Jinwoo Shin, Juho Lee}{}
+
+    \resumeProjectHeading{[C2]}{Safeguard text-to-image diffusion models with human feedback inversion}{ECCV 2024}{\textbf{Sanghyun Kim}, Seohyeon Jung, Balhae Kim, Moonseok Choi, Jinwoo Shin, Juho Lee}{(poster)}
+    
+    \resumeProjectHeading{[P1]}{Slot-mixup with subsampling: a simple regularization for WSI classification}{arXiv 2024}{Seongho Keum, \textbf{Sanghyun Kim}}{}
+
+    \resumeProjectHeading{[W2]}{Towards safe self-distillation of internet-scale text-to-image diffusion models}{ICML 2023}{\textbf{Sanghyun Kim}, Seohyeon Jung, Balhae Kim, Moonseok Choi, Jinwoo Shin, Juho Lee}{(workshop)}
+
+    \resumeProjectHeading{[C1]}{A simple yet powerful deep active learning with snapshots ensemble}{ICLR 2023}{Seohyeon Jung$^{*}$, \textbf{Sanghyun Kim}$^{*}$}{(poster)}
+
+    \resumeProjectHeading{[W1]}{Modeling uplift from observational time-series in continual scenarios}{AAAI 2023}{\textbf{Sanghyun Kim}, Jungwon Choi, Namhee Kim, Jaesung Ryu, Juho Lee}{(oral)}
+    
+    \resumeSubHeadingListEnd
+
+\section{Patents}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Method and apparatus for generating images (No. 10-2025-0209827)}
+      {Samsung Electronics}{\textbf{Sanghyun Kim}, Juyeon Ok}{(pending)}
+
+    \resumeSubHeadingListEnd
+
+%-----------COMMUNITY AND LEADERSHIP-----------
+\section{Community \& Leadership}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Yonsei Artificial Intelligence (YAI)}{September 2021 – August 2022}
+      {AI society at Yonsei University}{Seoul, Republic of Korea}
+      \resumeItemListStart
+        \resumeItem{Led an industry-academic collaboration project with Backend Inc. for causal inference utilizing game log data.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Yonsei Eagle's Mentoring}{March 2021 – December 2021}
+      {Official mentoring program at Yonsei university}{Seoul, Republic of Korea}
+      \resumeItemListStart
+        \resumeItem{Served as R/Python Programming \& Statistical Method course mentor; received the best mentoring team award.}
+      \resumeItemListEnd
+
+    \resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------
+\section{Projects}
+
+    \resumeSubHeadingListStart
+      \resumeSubheading
+          {Center for Trustworthy AI}{January 2023 -- August 2024}{Seoul National University \& National Research Foundation of Korea (NRF)}{}
+
+      \resumeSubheading
+          {Development and Study of AI Technologies on Ethics}{September 2022 -- August 2024}{Institute of Information \& Communications Technology Planning (IITP)}{}
+
+      \resumeSubheading
+        {2022 National AI Challenge}{May 2022 -- July 2022}{Ministry of Science and ICT}{}
+        \resumeItemListStart
+          \resumeItem{Won 2nd/54 place in natural language (MRC) track; received the Minister of Science and Technology award.}
+      \resumeItemListEnd
+
+      \resumeSubheading
+        {Causal Inference with Game Log Data}{January 2022 -- July 2022}{Backend Inc. \& Yonsei University}{}
+        \resumeItemListStart
+          \resumeItem{Proposed causal inference}
+      \resumeItemListEnd
+
+      % \resumeProjectHeading
+      %     {\textbf{Project Title 2} $|$ \emph{Technologies used}}{June 2021 -- Present}
+      %     \resumeItemListStart
+      %       \resumeItem{Project Description 1}
+      %       \resumeItem{Project Description 2}
+      %     \resumeItemListEnd
+         
+
+    \resumeSubHeadingListEnd
+
+
+%
+%-----------TECHNICAL SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages}{: Korean (native), English (high) -- TOEIC: 990, TEPS: 510} \\
+     \textbf{Programming}{: Python, R, C++, CUDA/C++, PyTorch, Tensorflow, JAX} \\
+     \textbf{Certificates}{: Data Analysis (ADsP), SQL (SQLD), PADI -- Open Water Diver, Emergency First Response (EFR)}
+    }}
+ \end{itemize}
+
+
+%-------------------------------------------
+\end{document}

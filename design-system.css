@@ -1,0 +1,337 @@
+/* ============================================================
+   Sanghyun Kim — Design System
+   "Clean, modern, quietly confident"
+   ============================================================ */
+
+:root {
+  /* ---------- Color: Clean neutrals ---------- */
+  --bg:           #FFFFFF;
+  --bg-2:         #FAFAFA;
+  --bg-sunk:      #F4F4F5;
+  --bg-inv:       #0A0A0A;
+
+  --fg:           #0A0A0A;
+  --fg-2:         #262626;
+  --fg-mute:      #525252;
+  --fg-faint:     #A3A3A3;
+  --fg-ghost:     #D4D4D4;
+
+  --border:       #E5E5E5;
+  --border-2:     #EFEFEF;
+  --rule:         #E5E5E5;
+
+  /* Accent — electric cobalt */
+  --accent:       #2E5BFF;
+  --accent-2:     #1E40DF;
+  --accent-soft:  #EEF2FF;
+  --accent-ink:   #1E3AC7;
+
+  /* Semantic tints (used sparingly) */
+  --ok:           #16A34A;
+  --warn:         #D97706;
+
+  /* ---------- Type ---------- */
+  --font-sans:   "Source Serif 4", "Source Serif Pro", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --font-mono:   "JetBrains Mono", "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --font-display: "Source Serif 4", "Iowan Old Style", Georgia, serif;
+
+  /* Scale (ratio ≈ 1.2) */
+  --fs-xs:    0.75rem;    /* 12 */
+  --fs-sm:    0.8125rem;  /* 13 */
+  --fs-base:  0.9375rem;  /* 15 */
+  --fs-md:    1.0625rem;  /* 17 */
+  --fs-lg:    1.25rem;    /* 20 */
+  --fs-xl:    1.5rem;     /* 24 */
+  --fs-2xl:   1.875rem;   /* 30 */
+  --fs-3xl:   2.5rem;     /* 40 */
+  --fs-4xl:   3.5rem;     /* 56 */
+  --fs-display: 5rem;     /* 80 */
+
+  --lh-tight:  1.08;
+  --lh-snug:   1.25;
+  --lh-body:   1.55;
+  --lh-loose:  1.72;
+
+  --tr-tight:  -0.025em;
+  --tr-base:    -0.011em;
+  --tr-wide:    0.01em;
+  --tr-caps:    0.06em;
+
+  /* Weights */
+  --fw-normal:  400;
+  --fw-medium:  500;
+  --fw-semi:    600;
+  --fw-bold:    700;
+
+  /* ---------- Space (8-based) ---------- */
+  --s-0: 0;
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.5rem;
+  --s-6: 2rem;
+  --s-7: 3rem;
+  --s-8: 4rem;
+  --s-9: 6rem;
+  --s-10: 8rem;
+
+  /* ---------- Radii + stroke ---------- */
+  --r-0: 0;
+  --r-1: 4px;
+  --r-2: 6px;
+  --r-3: 10px;
+  --r-4: 14px;
+  --r-round: 999px;
+
+  /* ---------- Shadow (very light) ---------- */
+  --shadow-sm: 0 1px 2px rgba(10,10,10,0.04);
+  --shadow-md: 0 4px 12px rgba(10,10,10,0.06);
+  --shadow-lg: 0 12px 32px rgba(10,10,10,0.08);
+
+  /* ---------- Motion ---------- */
+  --ease: cubic-bezier(.2,.7,.2,1);
+  --ease-out: cubic-bezier(.16,1,.3,1);
+  --t-fast: 120ms;
+  --t-base: 220ms;
+  --t-slow: 420ms;
+
+  --measure: 68ch;
+  --gutter:  clamp(1rem, 3vw, 2rem);
+}
+
+/* ---------- Dark ---------- */
+[data-theme="dark"] {
+  --bg:         #0A0A0A;
+  --bg-2:       #111111;
+  --bg-sunk:    #171717;
+  --bg-inv:     #FAFAFA;
+  --fg:         #FAFAFA;
+  --fg-2:       #E5E5E5;
+  --fg-mute:    #A3A3A3;
+  --fg-faint:   #737373;
+  --fg-ghost:   #404040;
+  --border:     #262626;
+  --border-2:   #1F1F1F;
+  --rule:       #262626;
+  --accent:     #5B7FFF;
+  --accent-2:   #7B9BFF;
+  --accent-soft:#0E1A3A;
+  --accent-ink: #9FB4FF;
+}
+
+/* ---------- Base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html, body {
+  margin: 0; padding: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  font-size: var(--fs-base);
+  line-height: var(--lh-body);
+  letter-spacing: var(--tr-base);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  transition: background-color var(--t-base) var(--ease), color var(--t-base) var(--ease);
+}
+
+::selection { background: var(--accent); color: white; }
+
+a {
+  color: var(--fg);
+  text-decoration: none;
+  border-bottom: 1px solid var(--fg-ghost);
+  transition: color var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease);
+}
+a:hover { color: var(--accent); border-color: var(--accent); }
+a.quiet { border-bottom: 0; color: var(--fg-mute); }
+a.quiet:hover { color: var(--accent); }
+
+/* ---------- Typography helpers ---------- */
+.t-display { font-family: var(--font-display); font-size: var(--fs-display); line-height: var(--lh-tight); letter-spacing: var(--tr-tight); font-weight: var(--fw-semi); }
+.t-h1 { font-family: var(--font-display); font-size: var(--fs-3xl); line-height: var(--lh-tight); letter-spacing: var(--tr-tight); font-weight: var(--fw-semi); }
+.t-h2 { font-family: var(--font-display); font-size: var(--fs-2xl); line-height: var(--lh-snug); letter-spacing: var(--tr-tight); font-weight: var(--fw-semi); }
+.t-h3 { font-family: var(--font-display); font-size: var(--fs-xl); line-height: var(--lh-snug); letter-spacing: var(--tr-tight); font-weight: var(--fw-semi); }
+.t-h4 { font-family: var(--font-sans); font-size: var(--fs-lg); line-height: var(--lh-snug); font-weight: var(--fw-medium); }
+
+.t-body { font-size: var(--fs-base); line-height: var(--lh-body); }
+.t-lead { font-size: var(--fs-md); line-height: var(--lh-body); color: var(--fg-mute); }
+
+.t-mono    { font-family: var(--font-mono); letter-spacing: 0; }
+.t-mono-sm { font-family: var(--font-mono); font-size: var(--fs-sm); letter-spacing: 0; }
+.t-mono-xs { font-family: var(--font-mono); font-size: var(--fs-xs); letter-spacing: 0; }
+
+.t-caps {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: var(--tr-caps);
+  font-size: var(--fs-xs);
+  color: var(--fg-mute);
+}
+
+.muted { color: var(--fg-mute); }
+.faint { color: var(--fg-faint); }
+
+/* ---------- Rules ---------- */
+hr, .hr { border: 0; border-top: 1px solid var(--rule); margin: var(--s-5) 0; }
+.hr-thin { border-top-color: var(--border-2); }
+
+/* ---------- Section header ---------- */
+.sec-head {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-4);
+  padding-bottom: var(--s-3);
+  margin-bottom: var(--s-5);
+  border-bottom: 1px solid var(--border);
+}
+.sec-head .num {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--fg-faint);
+  min-width: 2.5rem;
+}
+.sec-head h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-semi);
+  letter-spacing: var(--tr-tight);
+}
+.sec-head .aside {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--fg-faint);
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  padding: 7px 12px;
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--fg);
+  cursor: pointer;
+  border-radius: var(--r-2);
+  transition: background-color var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease), color var(--t-fast) var(--ease);
+  line-height: 1.2;
+}
+.btn:hover { border-color: var(--fg-mute); }
+.btn-primary {
+  background: var(--fg);
+  color: var(--bg);
+  border-color: var(--fg);
+}
+.btn-primary:hover { background: var(--fg-2); border-color: var(--fg-2); }
+.btn-ghost {
+  border-color: transparent;
+  color: var(--fg-mute);
+  background: transparent;
+}
+.btn-ghost:hover { background: var(--bg-sunk); color: var(--fg); border-color: transparent; }
+.btn-accent {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.btn-accent:hover { background: var(--accent); color: white; }
+
+/* ---------- Chips / tags ---------- */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
+  color: var(--fg-mute);
+  background: var(--bg-sunk);
+  border: 1px solid transparent;
+  border-radius: var(--r-round);
+  cursor: pointer;
+  user-select: none;
+  transition: all var(--t-fast) var(--ease);
+  letter-spacing: 0;
+  line-height: 1.3;
+}
+.chip:hover { color: var(--fg); background: var(--bg-2); border-color: var(--border); }
+.chip[aria-pressed="true"],
+.chip.is-active {
+  color: var(--bg);
+  background: var(--fg);
+  border-color: var(--fg);
+}
+.chip--accent.is-active { background: var(--accent); border-color: var(--accent); color: white; }
+
+/* Venue badge */
+.venue {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.02em;
+  padding: 3px 8px;
+  border-radius: var(--r-1);
+  background: var(--bg-sunk);
+  color: var(--fg-2);
+  line-height: 1.4;
+  white-space: nowrap;
+}
+.venue--top    { background: var(--fg); color: var(--bg); }
+.venue--arxiv  { background: transparent; color: var(--fg-mute); border: 1px dashed var(--border); }
+.venue--wshop  { background: var(--bg-sunk); color: var(--fg-mute); }
+.venue--accent { background: var(--accent); color: white; }
+
+/* ---------- Cards ---------- */
+.card {
+  border: 1px solid var(--border);
+  background: var(--bg);
+  padding: var(--s-5);
+  border-radius: var(--r-3);
+  transition: border-color var(--t-base) var(--ease), box-shadow var(--t-base) var(--ease);
+}
+.card:hover { border-color: var(--fg-ghost); box-shadow: var(--shadow-sm); }
+
+/* ---------- KV list ---------- */
+.kv {
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  gap: var(--s-2) var(--s-4);
+  font-size: var(--fs-sm);
+  margin: 0;
+}
+.kv dt { font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--fg-faint); padding-top: 2px; }
+.kv dd { margin: 0; color: var(--fg); }
+
+/* ---------- Kbd ---------- */
+kbd, .kbd {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 1px 6px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-1);
+  background: var(--bg-2);
+  color: var(--fg-mute);
+  line-height: 1.4;
+  display: inline-block;
+}
+
+/* ---------- Focus ---------- */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: var(--r-1);
+}
+
+/* ---------- Scrollbar ---------- */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; border: 2px solid var(--bg); }
+::-webkit-scrollbar-thumb:hover { background: var(--fg-faint); }
