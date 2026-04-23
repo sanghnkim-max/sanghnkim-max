@@ -36,7 +36,7 @@ function Hero() {
             <span className="hero__name-ko">{s.name_ko}</span>
           </h1>
           <p className="hero__blurb">
-            AI Research Scientist at <b>Samsung Research</b>, currently leading <b>Bixby Next</b> — an on-device agentic framework for proactive device assistance.
+            AI Research Scientist at <b>Samsung Research</b>, currently leading on-device agent research for proactive device assistance.
             Previously technically led <i>Gauss-Image</i>, the on-device text-to-image foundation model that shipped in the Galaxy S26.
             M.S. from <b>KAIST</b> under <i>Juho Lee</i> &amp; <i>Jinwoo Shin</i>, working on safety alignment for diffusion models.
           </p>
@@ -99,7 +99,7 @@ function Now() {
           <article key={n.name} className="now-card">
             <div className="now-card__head">
               <div className="now-card__kind t-caps">{n.kind}</div>
-              <span className={cls('now-card__status', n.status === 'shipped, iterating' && 'is-shipped')}>
+              <span className={cls('now-card__status', n.status === 'released' && 'is-shipped')}>
                 <span className="dot"/>{n.status}
               </span>
             </div>

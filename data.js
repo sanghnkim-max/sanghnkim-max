@@ -4,7 +4,7 @@ window.SITE = {
   name_ko: "김상현",
   role: "AI Research Scientist · Project Leader",
   tagline: "I work on generative models — making them safer, more controllable, and more useful on-device.",
-  blurb: "Currently leading Bixby Next at Samsung Research. Previously technically led the Gauss-Image on-device T2I foundation model, shipped in the Galaxy S26 series. M.S. from KAIST under Juho Lee & Jinwoo Shin, where I worked on safety alignment for diffusion models.",
+  blurb: "Currently leading an on-device agent project at Samsung Research. Previously technically led the Gauss-Image on-device T2I foundation model, shipped in the Galaxy S26 series. M.S. from KAIST under Juho Lee & Jinwoo Shin, where I worked on safety alignment for diffusion models.",
   location: "Seoul, Republic of Korea",
   email: "sanghn.kim.sr@gmail.com",
   emailWork: "sanghn.kim@samsung.com",
@@ -34,23 +34,23 @@ window.SITE = {
     { year: "2024", dot: "samsung",   title: "Samsung Research — Gauss-Image", place: "Seoul", text: "Technically led pre-training & fine-tuning of Gauss-Image, an on-device T2I foundation model." },
     { year: "2026", dot: "ship",      title: "Galaxy S26", place: "shipped", text: "Gauss-Image-powered generative wallpaper, image eraser, and harmonization launched on the Galaxy S26 series." },
     { year: "2026", dot: "iclr-2",    title: "Second ICLR", place: "ICLR 2026", text: "\"Model already knows the best noise\" — Bayesian active noise selection via attention. Video diffusion without retraining." },
-    { year: "2026", dot: "argo",      title: "Leading Bixby Next", place: "Samsung Research", text: "Took on leadership of Bixby Next — an on-device agentic framework for proactive, perception-triggered device-use assistance." },
+    { year: "2026", dot: "argo",      title: "Leading on-device agents", place: "Samsung Research", text: "Took on leadership of an on-device agentic framework for proactive, perception-triggered device-use assistance." },
   ],
 
   // Right now — ongoing projects that aren't papers yet.
   now: [
     {
-      name: "Bixby Next",
+      name: "On-device Agent",
       kind: "Project · lead",
-      status: "in flight",
+      status: "ongoing",
       year: "2026 —",
       tldr: "On-device agentic framework for proactive device-use assistance. Perception triggers → multimodal context → orchestrator → generative UI.",
-      role: "Overall project lead and project lead of the Web Agent Model; setting the research agenda across perception, planning, and UI generation."
+      role: "Overall project lead; setting the research agenda across perception, planning, and UI generation."
     },
     {
       name: "Generative UI",
       kind: "Framework · Agents",
-      status: "internal beta",
+      status: "developing",
       year: "2025 —",
       tldr: "Platform-agnostic generative-UI framework and a suite of agents that use it — perception, planning, and on-the-fly UI composition for Samsung One UI.",
       role: "Architect & tech lead of the framework; leading the agent team building on top of it."
@@ -58,7 +58,7 @@ window.SITE = {
     {
       name: "Gauss-Image",
       kind: "Foundation model",
-      status: "shipped, iterating",
+      status: "released",
       year: "2024 — 2026",
       tldr: "On-device T2I foundation model powering generative wallpaper, image eraser, and harmonization on the Galaxy S26 series.",
       role: "Technical lead — pre-training, fine-tuning, downstream fine-tuning."
@@ -73,7 +73,7 @@ window.SITE = {
   ],
 
   news: [
-    { date: "Jan 2026", text: "Took on leadership of Bixby Next — on-device agentic framework for proactive device-use assistance.", tag: "role" },
+    { date: "Jan 2026", text: "Took on leadership of an on-device agentic framework for proactive device-use assistance.", tag: "role" },
     { date: "Jan 2026", text: "Launched generative wallpaper, image eraser, and harmonization features in Galaxy S26.", tag: "ship" },
     { date: "Nov 2025", text: "\"Model already knows the best noise\" accepted to ICLR 2026 (poster).", tag: "paper" },
     { date: "Aug 2025", text: "Filed patent: Method and apparatus for generating images (No. 10-2025-0209827).", tag: "patent" },
@@ -153,7 +153,7 @@ window.SITE = {
       org: "Head of Agent Model for Device Part · AI Core Team, Samsung Research",
       place: "Seoul",
       notes: [
-        "Leading Bixby Next and the Web Agent Model — on-device agentic framework for proactive device-use assistance.",
+        "Leading an on-device agentic framework for proactive device-use assistance.",
         "Leading multimodal context generator & orchestrator models for a perception-triggered agentic framework.",
         "Developed a platform-agnostic generative-UI framework/renderer for Samsung One UI.",
       ]

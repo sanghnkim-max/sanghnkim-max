@@ -15,7 +15,7 @@ function Masthead() {
       <div className="masthead__role">{s.role}</div>
       <p className="masthead__tagline">{s.tagline}</p>
       <p className="masthead__blurb">
-        Currently leading <b>Bixby Next</b> at Samsung Research.
+        Currently leading on-device agent research at Samsung Research.
         Previously technically led <i>Gauss-Image</i>, the on-device T2I foundation model shipped in the Galaxy S26 series.
         M.S. from <b>KAIST</b> under Juho Lee & Jinwoo Shin, with a focus on safety alignment for diffusion models.
       </p>
